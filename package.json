@@ -18,5 +18,8 @@
     "@fontsource-variable/spline-sans-mono": "^5.0.0",
     "@fontsource/amiri": "^5.0.0",
     "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.160.1"
   }
 }

@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers (static assets) deploy config.
+  // Git-connected builds run `npx wrangler deploy` with the dashboard's
+  // credentials; this file just tells wrangler WHAT to deploy — no worker
+  // script, only the static output in dist/.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "breakfree-web-site",
+  "compatibility_date": "2026-11-10",
+  "assets": {
+    "directory": "dist"
+  }
+}

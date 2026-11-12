@@ -5,3 +5,5 @@ packages: []
 allowBuilds:
   esbuild: true
   sharp: true
+  # wrangler's local runtime binary (only used for `wrangler dev`)
+  workerd: true
