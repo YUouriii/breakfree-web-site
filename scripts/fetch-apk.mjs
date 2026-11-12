@@ -8,7 +8,7 @@
 // detect the missing file and fall back to linking GitHub directly.
 
 import { createWriteStream } from "node:fs";
-import { existsSync, renameSync, unlinkSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { fileURLToPath } from "node:url";
@@ -19,11 +19,12 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(HERE, "..", "public");
 const APK = path.join(PUBLIC, "BreakFree.apk");
 const TMP = path.join(PUBLIC, "BreakFree.apk.part");
+const META = path.join(HERE, "..", "src", "data", "release.json");
 
-// Already fetched this build (or present locally)? Nothing to do.
+// Already fetched this build (or present locally)? Still refresh the
+// version metadata below, then skip the download.
 if (existsSync(APK)) {
   console.log("[fetch-apk] public/BreakFree.apk already present — skipping download");
-  process.exit(0);
 }
 
 try {
@@ -36,6 +37,29 @@ try {
   const asset = release.assets?.find((a) => a.name === "BreakFree.apk");
   if (!asset) throw new Error("BreakFree.apk not found in latest release");
 
+  // Record the release metadata for the site (version badge, JSON-LD).
+  // Written even if the APK download below fails — the components then
+  // fall back to linking GitHub, but still show the right version.
+  mkdirSync(path.dirname(META), { recursive: true });
+  writeFileSync(
+    META,
+    JSON.stringify(
+      {
+        tag: release.tag_name,
+        size: asset.size,
+        apk: "github", // fixed below when the download succeeds
+        fetchedAt: new Date().toISOString(),
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+
+  if (existsSync(APK)) {
+    markLocal();
+    process.exit(0);
+  }
+
   console.log(`[fetch-apk] downloading ${asset.name} (${Math.round(asset.size / 1048576)} MB) from ${release.tag_name}…`);
   const fileRes = await fetch(asset.browser_download_url, {
     headers: { "User-Agent": "breakfree-site-build" },
@@ -45,10 +69,18 @@ try {
 
   await pipeline(Readable.fromWeb(fileRes.body), createWriteStream(TMP));
   renameSync(TMP, APK);
-  console.log(`[fetch-apk] saved public/BreakFree.apk`);
+  markLocal();
+  console.log(`[fetch-apk] saved public/BreakFree.apk (${release.tag_name})`);
+
+  /** Flip the metadata to "served from this site". */
+  function markLocal() {
+    const meta = JSON.parse(readFileSync(META, "utf8"));
+    meta.apk = "local";
+    writeFileSync(META, JSON.stringify(meta, null, 2) + "\n");
+  }
 } catch (err) {
   // Clean the temp file so we never leave a half-written APK around.
   try { unlinkSync(TMP); } catch {}
-  console.warn(`[fetch-apk] WARN: could not fetch the APK (${err.message}) — the site will link GitHub directly instead`);
+  console.warn(`[fetch-apk] WARN: could not fetch the APK (${err.message}) — the site keeps its last known version and links GitHub directly`);
   process.exit(0); // never fail the deploy over this
 }

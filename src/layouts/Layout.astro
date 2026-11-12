@@ -12,6 +12,8 @@ import "@fontsource-variable/spline-sans-mono";
 import "@fontsource/amiri/arabic.css";
 import "@fontsource/amiri/arabic-700.css";
 
+import release from "../data/release.json";
+
 interface Props {
   title: string;
   description: string;
@@ -76,7 +78,7 @@ const { title, description } = Astro.props;
             inLanguage: ["en", "ar"],
             isAccessibleForFree: true,
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-            softwareVersion: "1.0.0",
+            softwareVersion: release.tag.replace(/^v/, ""),
             author: {
               "@type": "Organization",
               name: "YUouriii",
