@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://breakfree-web-site.netlify.app/sitemap-index.xml

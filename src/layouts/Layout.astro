@@ -33,8 +33,64 @@ const { title, description } = Astro.props;
     <meta property="og:site_name" content="BreakFree / تعافي" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta
+      property="og:image"
+      content={new URL("/og.png", Astro.site)}
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="BreakFree / تعافي — The fight is private. So is the help."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL("/og.png", Astro.site)} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            name: "BreakFree / تعافي",
+            alternateName: "تعافي",
+            url: Astro.site?.href,
+            inLanguage: ["en", "ar"],
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "BreakFree — تعافي",
+            alternateName: "تعافي",
+            operatingSystem: "Android",
+            applicationCategory: "HealthApplication",
+            description:
+              "An open-source Android recovery companion for quitting compulsive pornography use: a live clean-streak tracker, CBT-based SOS exercises, an AI counselor, and an anonymous community. Private by design.",
+            inLanguage: ["en", "ar"],
+            isAccessibleForFree: true,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            softwareVersion: "1.0.0",
+            author: {
+              "@type": "Organization",
+              name: "YUouriii",
+              url: "https://github.com/YUouriii",
+            },
+            downloadUrl:
+              "https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk",
+            installUrl:
+              "https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk",
+            sameAs: ["https://github.com/YUouriii/taafi-app"],
+          },
+        ],
+      })}
+    />
     <title>{title}</title>
     <script is:inline>
       // Apply saved theme + language before first paint (no flash).
