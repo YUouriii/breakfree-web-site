@@ -8,7 +8,7 @@ import sitemap from "@astrojs/sitemap";
 // different domain (or you add a custom domain), update it here once and
 // the next build fixes canonical URLs, og:image and sitemap everywhere.
 export default defineConfig({
-  site: "https://taafi-breakfree.netlify.app",
+  site: "https://breakfree-taafi.netlify.app",
   compressHTML: true,
   integrations: [sitemap()],
 });

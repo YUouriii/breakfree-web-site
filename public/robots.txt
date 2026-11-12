@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://taafi-breakfree.netlify.app/sitemap-index.xml
+Sitemap: https://breakfree-taafi.netlify.app/sitemap-index.xml
