@@ -5,8 +5,10 @@ import { fileURLToPath } from "node:url";
 const apkLocal = fileURLToPath(new URL("../../public/BreakFree.apk", import.meta.url));
 // Serve the APK same-origin when the build fetched it (mobile browsers
 // handle that far better than GitHub's redirect chain); otherwise fall
-// back to the GitHub "latest release" URL.
-const apkHref = existsSync(apkLocal) ? "/BreakFree.apk" : "https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk";
+// back to the GitHub release page.
+const apkHref = existsSync(apkLocal)
+  ? "/BreakFree.apk"
+  : "https://github.com/YUouriii/taafi-app/releases/latest";
 
 const links = [
   {

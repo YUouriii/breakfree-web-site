@@ -79,3 +79,18 @@ jobs:
         with:
           files: out/BreakFree.apk
           generate_release_notes: true
+
+      # Tell the website to rebuild so it picks up this release: the site
+      # fetches the latest APK and shows the new version number. Create the
+      # hook in Netlify (Site configuration → Build & deploy → Build hooks)
+      # and store its URL here as the NETLIFY_BUILD_HOOK secret.
+      - name: Rebuild the website
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -n "$NETLIFY_BUILD_HOOK" ]; then
+            curl -sS -X POST "$NETLIFY_BUILD_HOOK" -o /dev/null \
+              -w "Website rebuild requested (HTTP %{http_code})\n"
+          else
+            echo "NETLIFY_BUILD_HOOK is not set — skipping the website rebuild."
+          fi

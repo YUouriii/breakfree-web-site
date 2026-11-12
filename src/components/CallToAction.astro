@@ -4,7 +4,13 @@ import { fileURLToPath } from "node:url";
 import release from "../data/release.json";
 
 const apkLocal = fileURLToPath(new URL("../../public/BreakFree.apk", import.meta.url));
-const apkHref = existsSync(apkLocal) ? "/BreakFree.apk" : "https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk";
+// Serve the APK same-origin when the build fetched it — mobile browsers
+// handle that far better than GitHub's redirect chain. If the fetch failed,
+// fall back to the release PAGE (not the direct download URL), so the
+// visitor lands on GitHub and can pick the file manually.
+const apkHref = existsSync(apkLocal)
+  ? "/BreakFree.apk"
+  : "https://github.com/YUouriii/taafi-app/releases/latest";
 const mb = (release.size / 1048576).toFixed(1);
 ---
 
@@ -100,43 +106,6 @@ const mb = (release.size / 1048576).toFixed(1);
     </p>
   </div>
 </section>
-
-<script>
-  // Live version check: if a newer release exists than the one baked into
-  // this page at build time, update the label and point the buttons at the
-  // new APK. No redeploy needed between app releases. Failure is silent —
-  // the build-time version stays on display.
-  const badge = document.querySelector("[data-build-tag]");
-  const buttons = document.querySelectorAll("[data-apk-dl]");
-  if (badge && buttons.length > 0) {
-    fetch("https://api.github.com/repos/YUouriii/taafi-app/releases/latest", {
-      headers: { Accept: "application/vnd.github+json" },
-    })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((rel) => {
-        if (!rel || !rel.tag_name || rel.tag_name === badge.dataset.buildTag)
-          return;
-        const asset = (rel.assets ?? []).find(
-          (a) => a.name === "BreakFree.apk",
-        );
-        const mb = asset ? (asset.size / 1048576).toFixed(1) : null;
-        const en = badge.querySelector(".t-en");
-        const ar = badge.querySelector(".t-ar");
-        if (en)
-          en.textContent = mb
-            ? `Latest release: ${rel.tag_name} · ${mb} MB`
-            : `Latest release: ${rel.tag_name}`;
-        if (ar)
-          ar.textContent = mb
-            ? `آخر إصدار: ${rel.tag_name} · ${mb} MB`
-            : `آخر إصدار: ${rel.tag_name}`;
-        buttons.forEach((a) => {
-          if (asset) a.setAttribute("href", asset.browser_download_url);
-        });
-      })
-      .catch(() => {});
-  }
-</script>
 
 <style>
   .cta {
