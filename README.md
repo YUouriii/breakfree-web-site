@@ -21,6 +21,18 @@ companion for quitting compulsive pornography use. Source of the app:
 | `pnpm build`      | Production build to `./dist/`            |
 | `pnpm preview`    | Preview the production build locally     |
 
+## Deploy (Netlify)
+
+The repo is Netlify-ready (`netlify.toml`): build command `pnpm build`,
+publish directory `dist`, Node 22 + pnpm 11.17.0 pinned, immutable caching
+for hashed `/_astro/*` assets, and basic security headers.
+
+1. Push changes to `main`.
+2. On Netlify: **Add new site → Import an existing project → GitHub →
+   `breakfree-web-site` → Deploy** (settings are read from `netlify.toml`).
+3. Every push to `main` redeploys automatically; PRs get preview URLs.
+
+
 ## Structure
 
 ```
