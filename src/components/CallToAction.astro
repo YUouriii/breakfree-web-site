@@ -1,0 +1,171 @@
+---
+---
+
+<section class="section cta" id="source">
+  <div class="container cta__inner">
+    <p class="section-label" data-reveal>
+      <span class="t-en">Day one</span>
+      <span class="t-ar" lang="ar" dir="rtl">اليوم الأول</span>
+    </p>
+    <h2 class="cta__title" data-reveal style="--d:.06s">
+      <span class="t-en">
+        Day one is a<br /><em>download away.</em>
+      </span>
+      <span class="t-ar" lang="ar" dir="rtl">
+        اليوم الأول على بُعد<br /><em>تحميل واحد.</em>
+      </span>
+    </h2>
+    <p
+      class="cta__ar"
+      lang="ar"
+      dir="rtl"
+      data-reveal
+      style="--d:.1s"
+      aria-label="The first day, in Arabic: al-yawm al-awwal"
+    >
+      اليوم الأول
+    </p>
+
+    <div class="cta__actions" data-reveal style="--d:.14s">
+      <a
+        class="btn btn--solid"
+        href="https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk"
+      >
+        <span class="t-en">Download the APK</span>
+        <span class="t-ar" lang="ar" dir="rtl">حمّل الـ <span class="lat" lang="en" dir="ltr">APK</span></span>
+      </a>
+      <a
+        class="btn btn--ghost"
+        href="https://github.com/YUouriii/taafi-app"
+        target="_blank"
+        rel="noopener noreferrer">
+        <span class="t-en">Source on GitHub</span>
+        <span class="t-ar" lang="ar" dir="rtl">المصدر على GitHub</span>
+      </a>
+    </div>
+
+    <p class="cta__install" data-reveal style="--d:.16s">
+      <span class="t-en">
+        After downloading, open the file and allow the one-time &ldquo;install
+        from unknown sources&rdquo; prompt — then it's on your phone. The APK
+        is built from the public source; this site ships nothing extra.
+      </span>
+      <span class="t-ar" lang="ar" dir="rtl">
+        بعد التنزيل، افتح الملف واسمح مرة واحدة بالتثبيت من مصادر غير معروفة —
+        وينتهي الأمر. والـ
+        <span class="lat" lang="en" dir="ltr">APK</span> يُبنى من المصدر
+        العام؛ وهذا الموقع لا يضيف عليه شيئًا.
+      </span>
+    </p>
+
+    <p class="cta__links mono" data-reveal style="--d:.18s">
+      <a
+        href="https://github.com/YUouriii/taafi-app/releases"
+        target="_blank"
+        rel="noopener noreferrer">
+        <span class="t-en">All releases ↗</span>
+        <span class="t-ar" lang="ar" dir="rtl">كل الإصدارات ↗</span>
+      </a>
+      <span aria-hidden="true">·</span>
+      <a
+        href="https://github.com/YUouriii/taafi-app#readme"
+        target="_blank"
+        rel="noopener noreferrer">
+        <span class="t-en">README</span>
+        <span class="t-ar" lang="ar" dir="rtl">الملف التفصيلي</span>
+      </a>
+    </p>
+
+    <p class="cta__meta mono" data-reveal style="--d:.2s">
+      Android 9+ · Kotlin · Jetpack Compose · Firebase · Open source
+    </p>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--paper-deep);
+    border-block: 1px solid var(--hairline);
+    text-align: center;
+    transition: background-color 0.5s var(--ease-out);
+  }
+
+  .cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta__title {
+    font-size: clamp(2.8rem, 1.4rem + 6vw, 5.6rem);
+    line-height: 1;
+    margin-top: 1.8rem;
+  }
+
+  html[lang="ar"] .cta__title {
+    line-height: 1.35;
+  }
+
+  .cta__ar {
+    font-family: var(--font-arabic);
+    font-size: clamp(1.3rem, 1rem + 1.2vw, 1.8rem);
+    line-height: 1;
+    color: var(--dawn-deep);
+    margin-top: 1.6rem;
+    transition: color 0.4s var(--ease-out);
+  }
+
+  .cta__ar:hover {
+    color: var(--dawn);
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.6rem;
+  }
+
+  .cta__install {
+    margin-top: 1.8rem;
+    max-width: 52ch;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  html[lang="ar"] .cta__install {
+    font-style: normal;
+  }
+
+  .cta__links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.2rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .cta__links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.25s var(--ease-out);
+  }
+
+  .cta__links a:hover {
+    color: var(--dawn-deep);
+  }
+
+  .cta__meta {
+    margin-top: 3rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,0 +1,336 @@
+/* ————————————————————————————————————————————————
+   BreakFree / تعافي — design system
+   Aesthetic: "a recovery journal at dawn"
+   warm paper · ink · burnt sienna · hairlines · grain
+   Themes: light ("dawn") + dark ("night ink")
+   Languages: en (ltr) / ar (rtl, code-switched)
+   ———————————————————————————————————————————————— */
+
+:root {
+  --paper: #f6f1e7;
+  --paper-deep: #ebe2cf;
+  --ink: #211d16;
+  --ink-soft: #6e6554;
+  --dawn: #c14e24;
+  --dawn-deep: #9a3b1a;
+  --dawn-bright: #e8824c;
+  --sage: #41624f;
+  --night: #171310;
+  --cream: #ece4d2;
+
+  --hairline: rgba(33, 29, 22, 0.16);
+  --hairline-strong: rgba(33, 29, 22, 0.42);
+  --hairline-light: rgba(236, 228, 210, 0.16);
+  --hairline-light-strong: rgba(236, 228, 210, 0.45);
+
+  --font-display: "Fraunces Variable", "Amiri", "Iowan Old Style", Georgia, serif;
+  --font-body: "Newsreader Variable", "Amiri", Georgia, "Times New Roman", serif;
+  --font-mono: "Spline Sans Mono Variable", "Amiri", ui-monospace, "Cascadia Mono",
+    Menlo, Consolas, monospace;
+  --font-arabic: "Amiri", "Sakkal Majalla", "Times New Roman", serif;
+
+  --fs-body: clamp(1.0625rem, 1rem + 0.3vw, 1.2rem);
+  --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ——"night ink": the same journal after dark—— */
+:root[data-theme="dark"] {
+  --paper: #16120d;
+  --paper-deep: #1f1912;
+  --ink: #ece3cf;
+  --ink-soft: #a2937a;
+  --dawn: #e0662f;
+  --dawn-deep: #ef8f57;
+  --dawn-bright: #f2a877;
+  --sage: #8fb3a0;
+  --night: #0f0c09;
+  --cream: #ece3cf;
+
+  --hairline: rgba(236, 227, 207, 0.15);
+  --hairline-strong: rgba(236, 227, 207, 0.42);
+  --hairline-light: rgba(236, 227, 207, 0.14);
+  --hairline-light-strong: rgba(236, 227, 207, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-optical-sizing: auto;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  transition: background-color 0.5s var(--ease-out), color 0.5s var(--ease-out);
+}
+
+/* film grain over the whole page — cheap, static, pointer-transparent */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+html[data-theme="dark"] body::after {
+  opacity: 0.32;
+}
+
+::selection {
+  background: var(--dawn);
+  color: #fdf7ec;
+}
+
+:focus-visible {
+  outline: 2px solid var(--dawn);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 560;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 1.3rem + 3.2vw, 3.8rem);
+}
+
+h1 em,
+h2 em,
+h3 em {
+  font-style: italic;
+  color: var(--dawn);
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 480;
+}
+
+.ar {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+}
+
+.mono .ar {
+  font-size: 1.25em;
+  line-height: 1;
+}
+
+/* English terms embedded inside Arabic sentences — set in mono, deliberate */
+.lat {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  letter-spacing: 0.02em;
+}
+
+.container {
+  max-width: 74rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.section {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+
+/* journal-style section label: § + rising half-sun */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.section-label::before {
+  content: "";
+  width: 15px;
+  height: 8px;
+  border-radius: 15px 15px 0 0;
+  background: var(--dawn);
+  flex: none;
+}
+
+/* ————————————————————————
+   bilingual copy switching
+   <span class="t-en">english</span><span class="t-ar" lang="ar" dir="rtl">عربي</span>
+   ———————————————————————— */
+.t-ar {
+  display: none;
+}
+
+html[lang="ar"] .t-en {
+  display: none;
+}
+
+html[lang="ar"] .t-ar {
+  display: revert;
+}
+
+/* Arabic typography corrections — no tracking on connected script,
+   no fake italics (use the dawn color instead), taller leading */
+html[lang="ar"] body {
+  line-height: 1.85;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3 {
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+html[lang="ar"] em {
+  font-style: normal;
+  color: var(--dawn);
+}
+
+html[lang="ar"] .t-ar,
+html[lang="ar"] .section-label,
+html[lang="ar"] .btn {
+  letter-spacing: 0;
+}
+
+/* buttons — pill-shaped, mono caps, honest hover states */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.05em 1.9em;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.25s var(--ease-out),
+    border-color 0.25s var(--ease-out),
+    color 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--solid {
+  background: var(--dawn);
+  border-color: var(--dawn);
+  color: #fdf7ec;
+}
+
+.btn--solid:hover {
+  background: var(--dawn-deep);
+  border-color: var(--dawn-deep);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
+/* scroll progress — a thin dawn line at the very top of the page */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  background: var(--dawn);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+html[dir="rtl"] .progress {
+  transform-origin: 100% 50%;
+}
+
+/* scroll-triggered reveal, staggered via --d */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marquee__track {
+    animation: none !important;
+  }
+
+  .breath__ring {
+    animation: none !important;
+  }
+}

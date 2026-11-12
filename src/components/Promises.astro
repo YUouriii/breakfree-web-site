@@ -1,0 +1,141 @@
+---
+const items = [
+  {
+    title: { en: "Local-first by architecture", ar: "local-first بالبنية نفسها" },
+    text: {
+      en: "Streaks, check-ins and community posts live on the device, per account, and survive restarts — fully offline.",
+      ar: "الـ streak والـ check-in والمنشورات تعيش على الجهاز، لكل حساب، وتصمد بعد إعادة التشغيل — offline بالكامل.",
+    },
+  },
+  {
+    title: { en: "Cloud is a sync target, not a home", ar: "السحابة هدف مزامنة، لا مسكن" },
+    text: {
+      en: "Data mirrors to Firestore only when you sign in, and merges back under progress-protecting rules.",
+      ar: "البيانات تُعكس إلى Firestore فقط عند تسجيل الدخول، وتعود بقواعد دمج تحمي تقدمك.",
+    },
+  },
+  {
+    title: { en: "Failed writes are never lost", ar: "الكتابات الفاشلة لا تضيع" },
+    text: {
+      en: "A pending check-in is flagged locally, never overwritten by a cloud snapshot, and re-uploaded on the next sign-in.",
+      ar: "الـ check-in المعلَّق pending يُعلَّم محليًا، ولا يُكتب فوقه بلقطة سحابية، ويُرفع عند الدخول التالي.",
+    },
+  },
+  {
+    title: { en: "No demo data, ever", ar: "لا بيانات demo، أبدًا" },
+    text: {
+      en: "A new install starts at zero. Nothing is seeded to make the app look lived-in.",
+      ar: "التثبيت الجديد يبدأ من الصفر. لا شيء يُزرع ليبدو التطبيق مأهولًا.",
+    },
+  },
+  {
+    title: { en: "Backups disabled at the OS level", ar: "النسخ الاحتياطي معطّل في النظام" },
+    text: {
+      en: "allowBackup is false, so recovery data never rides along with system backups off the device.",
+      ar: "allowBackup = false، فبيانات التعافي لا ترافق نسخ النظام الاحتياطية خارج الجهاز أبدًا.",
+    },
+  },
+  {
+    title: { en: "The AI sees chat text only", ar: "الـ AI يرى نص المحادثة فقط" },
+    text: {
+      en: "Never mood logs, never monitor findings, never browsing. A plain-language disclosure comes before the first message.",
+      ar: "لا سجلّات المزاج، ولا نتائج المراقب، لا التصفح. إفصاح بلغة واضحة يسبق الرسالة الأولى.",
+    },
+  },
+  {
+    title: { en: "Crisis replies are handled locally", ar: "الرد على الأزمات يتم محليًا" },
+    text: {
+      en: "Messages about self-harm are intercepted before any model call and answered with emergency resources, in your language.",
+      ar: "ما يتعلق بإيذاء النفس يُعترض قبل أي استدعاء للنموذج، ويُجاب بمصادر طوارئ، بلغتك.",
+    },
+  },
+  {
+    title: { en: "Two shields, two consents", ar: "درعان، موافقتان" },
+    text: {
+      en: "The accessibility monitor and the DNS Shield are separate disclosures — granted separately, revoked separately.",
+      ar: "مراقب الـ accessibility ودرع الـ DNS إفصاحان منفصلان — تمنحهما منفصلين، وتلغيهما منفصلين.",
+    },
+  },
+];
+---
+
+<section class="section" id="privacy">
+  <div class="container">
+    <p class="section-label" data-reveal>
+      <span class="t-en">The receipts</span>
+      <span class="t-ar" lang="ar" dir="rtl">الإيصالات</span>
+    </p>
+    <h2 class="promises__title" data-reveal style="--d:.06s">
+      <span class="t-en">Privacy, <em>itemized.</em></span>
+      <span class="t-ar" lang="ar" dir="rtl">الخصوصية، <em>مُفصَّلة.</em></span>
+    </h2>
+
+    <ul class="promises__list">
+      {
+        items.map((it, i) => (
+          <li class="promises__item" data-reveal style={`--d:${(i % 4) * 0.05}s`}>
+            <span class="promises__num mono">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>
+                <span class="t-en">{it.title.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{it.title.ar}</span>
+              </h3>
+              <p>
+                <span class="t-en">{it.text.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{it.text.ar}</span>
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .promises__title {
+    margin-top: 1.6rem;
+  }
+
+  .promises__list {
+    list-style: none;
+    padding: 0;
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .promises__item {
+    display: grid;
+    grid-template-columns: 2.6rem minmax(0, 1fr);
+    gap: 0.8rem 1rem;
+    align-items: start;
+    border-top: 1px solid var(--hairline);
+    padding-block: 1.6rem;
+  }
+
+  .promises__num {
+    font-size: 0.8rem;
+    color: var(--dawn);
+    padding-top: 0.3rem;
+  }
+
+  .promises__item h3 {
+    font-size: 1.22rem;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+
+  .promises__item p {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  @media (max-width: 760px) {
+    .promises__list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

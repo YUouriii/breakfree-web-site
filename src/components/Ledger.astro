@@ -1,0 +1,248 @@
+---
+const label = {
+  en: "The ledger",
+  ar: "السجل",
+};
+
+const tools = [
+  {
+    num: "01",
+    name: {
+      en: "The streak tracker",
+      ar: "عدّاد الـ streak",
+    },
+    meta: {
+      en: "One honest number",
+      ar: "رقم صادق واحد",
+    },
+    text: {
+      en: "A live counter for days clean — local-first, offline-first, kept per account. Sync merges carefully: a relapse recorded on any device always wins over a longer streak; otherwise the longer streak wins, so a new device adopts the account's real progress. Counters only move forward, and only when they're telling the truth.",
+      ar: "عدّاد حي لأيام الصفاء — local-first بكل شيء، يعمل offline، ومحفوظ لكل حساب. والمزامنة دقيقة: أي relapse مسجّل على أي جهاز يغلب دائمًا الـ streak الأطول؛ وإلا فالأطول يغلب، فيتبنى الجهاز الجديد التقدم الحقيقي للحساب. العداد لا يتحرك إلى الأمام إلا حين يقول الحقيقة.",
+    },
+  },
+  {
+    num: "02",
+    name: {
+      en: "Daily check-ins",
+      ar: "تسجيل يومي — check-in",
+    },
+    meta: {
+      en: "Thirty seconds a day",
+      ar: "ثلاثون ثانية في اليوم",
+    },
+    text: {
+      en: "A mood, an urge, a note — logged in seconds, stored on your device, mirrored to your own cloud account only when you sign in. A check-in that couldn't reach the cloud is flagged pending, never overwritten by a snapshot, and re-uploaded on the next sign-in. No seeded demo data: a new install starts at zero, the way day one should.",
+      ar: "مزاج، رغبة، ملاحظة — تُسجَّل في ثوانٍ، وتُخزَّن على جهازك، وتُعكس إلى حسابك السحابي فقط عند تسجيل الدخول. الـ check-in الذي لم يصل إلى السحابة يُعلَّم pending، ولا يُكتب فوقه أبدًا، ويُرفع عند الدخول التالي. لا بيانات demo: التثبيت الجديد يبدأ من الصفر، كما يجب أن يبدأ اليوم الأول.",
+    },
+  },
+  {
+    num: "03",
+    name: {
+      en: "SOS, grounded in CBT",
+      ar: "زر SOS، بمنهج CBT",
+    },
+    meta: {
+      en: "The 120-second window",
+      ar: "نافذة الـ 120 ثانية",
+    },
+    text: {
+      en: "When an urge hits, a step-back timer runs for 120 seconds. When it expires, the app asks what happened: confirming a slip resets the streak — saying you're still clean counts as a save. A timer never resets your streak on its own, and a bad night doesn't get to erase your record silently.",
+      ar: "حين تأتي الرغبة، يعمل مؤجّل تراجع لمدة 120 ثانية. وحين ينتهي، يسألك التطبيق ماذا حدث: الإقرار بالانتكاسة يصفّر الـ streak — وقولك «ما زلت نظيفًا» يُحسب save. المؤجّل لا يصفّر عدّادك من تلقاء نفسه، والليلة السيئة لا تمحو سجلَّك بصمت.",
+    },
+  },
+  {
+    num: "04",
+    name: {
+      en: "An AI counselor, with fences",
+      ar: "مستشار AI بسياج واضح",
+    },
+    meta: {
+      en: "Chat text only",
+      ar: "نص المحادثة فقط",
+    },
+    text: {
+      en: "Talk it through with an AI companion via Gemini on Firebase AI Logic. The first message opens a plain-language disclosure, and only chat text is ever sent — never your mood logs, never the content monitor's findings, never your browsing. The fences are the feature.",
+      ar: "احكِ مع رفيق ذكي عبر Gemini على Firebase AI Logic. الرسالة الأولى تفتح إفصاحًا بلغة واضحة، ولا يُرسل أبدًا إلا نص المحادثة — لا سجلّات مزاجك، ولا نتائج مراقب المحتوى، لا تصفّحك. السياج نفسه هو الميزة.",
+    },
+  },
+  {
+    num: "05",
+    name: {
+      en: "An anonymous community",
+      ar: "مجتمع مجهول الهوية",
+    },
+    meta: {
+      en: "No real names",
+      ar: "بلا أسماء حقيقية",
+    },
+    text: {
+      en: "Share the hard days with people on the same road. Posts are stored on-device first and shared without a real name — and nothing is fabricated to make the room look busy. Everyone there actually started at day one too.",
+      ar: "شارك الأيام الصعبة مع من يسلك الطريق نفسه. المنشورات تُخزَّن على الجهاز أولًا وتُشارك بلا اسم حقيقي — ولا شيء مُلفَّق ليبدو المكان مزدحمًا. فالجميع هناك بدأ يومه الأول فعلًا.",
+    },
+  },
+];
+---
+
+<section class="section" id="ledger">
+  <div class="container">
+    <header class="ledger__head">
+      <p class="section-label" data-reveal>
+        <span class="t-en">{label.en}</span>
+        <span class="t-ar" lang="ar" dir="rtl">{label.ar}</span>
+      </p>
+      <div class="ledger__head-grid">
+        <h2 data-reveal style="--d:.06s">
+          <span class="t-en">
+            Five quiet tools.<br /><em>One honest number.</em>
+          </span>
+          <span class="t-ar" lang="ar" dir="rtl">
+            خمس أدوات هادئة.<br /><em>ورقم واحد صادق.</em>
+          </span>
+        </h2>
+        <p class="ledger__intro" data-reveal style="--d:.12s">
+          <span class="t-en">
+            Designed for the night they're needed, not the brochure. Each tool
+            is small on purpose — the app should feel like a companion, not a
+            surveillance officer.
+          </span>
+          <span class="t-ar" lang="ar" dir="rtl">
+            مصمَّمة لليلة الحاجة، لا للبروشور. كل أداة صغيرة عن قصد — ليشعر
+            التطبيق كأنه رفيق، لا جهاز مراقبة.
+          </span>
+        </p>
+      </div>
+    </header>
+
+    <ol class="ledger">
+      {
+        tools.map((t, i) => (
+          <li class="ledger__row" data-reveal style={`--d:${i * 0.05}s`}>
+            <span class="ledger__num mono">{t.num}</span>
+            <div class="ledger__body">
+              <h3 class="ledger__name">
+                <span class="t-en">{t.name.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{t.name.ar}</span>
+              </h3>
+              <p class="ledger__text">
+                <span class="t-en">{t.text.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{t.text.ar}</span>
+              </p>
+            </div>
+            <span class="ledger__meta mono">
+              <span class="t-en">{t.meta.en}</span>
+              <span class="t-ar" lang="ar" dir="rtl">{t.meta.ar}</span>
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .ledger__head-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 2rem 4rem;
+    align-items: end;
+    margin-top: 1.6rem;
+  }
+
+  .ledger__intro {
+    justify-self: end;
+    max-width: 40ch;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  html[lang="ar"] .ledger__intro {
+    font-style: normal;
+  }
+
+  .ledger {
+    list-style: none;
+    padding: 0;
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .ledger__row {
+    display: grid;
+    grid-template-columns: clamp(3rem, 6vw, 5.5rem) minmax(0, 1fr) auto;
+    gap: 1rem 2.5rem;
+    align-items: start;
+    border-top: 1px solid var(--hairline-strong);
+    padding-block: clamp(1.8rem, 3vw, 2.6rem);
+    transition: background-color 0.35s var(--ease-out);
+  }
+
+  .ledger__row:last-child {
+    border-bottom: 1px solid var(--hairline-strong);
+  }
+
+  .ledger__num {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    padding-top: 0.55rem;
+    transition: color 0.35s var(--ease-out);
+  }
+
+  .ledger__name {
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    line-height: 1.2;
+    margin-bottom: 0.65rem;
+    transition:
+      color 0.35s var(--ease-out),
+      font-variation-settings 0.35s var(--ease-out);
+  }
+
+  .ledger__text {
+    color: color-mix(in srgb, var(--ink) 88%, var(--paper));
+    max-width: 64ch;
+  }
+
+  .ledger__meta {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    white-space: nowrap;
+    padding-top: 0.75rem;
+    text-align: end;
+  }
+
+  .ledger__row:hover .ledger__num {
+    color: var(--dawn);
+  }
+
+  .ledger__row:hover .ledger__name {
+    font-style: italic;
+    color: var(--dawn-deep);
+  }
+
+  html[lang="ar"] .ledger__row:hover .ledger__name {
+    font-style: normal;
+    color: var(--dawn-deep);
+  }
+
+  @media (max-width: 860px) {
+    .ledger__head-grid {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .ledger__intro {
+      justify-self: start;
+    }
+
+    .ledger__row {
+      grid-template-columns: 2.4rem minmax(0, 1fr);
+    }
+
+    .ledger__meta {
+      grid-column: 2;
+      text-align: start;
+      padding-top: 0;
+    }
+  }
+</style>

@@ -1,0 +1,363 @@
+---
+---
+
+<section class="hero" id="top">
+  <span class="hero__mark ar" lang="ar" aria-hidden="true">تعافي</span>
+
+  <div class="container">
+    <p class="hero__kicker mono" data-reveal>
+      <span class="hero__kicker-left"
+        >BreakFree · <span class="ar" lang="ar">تعافي</span></span
+      >
+      <span class="hero__kicker-right">
+        <span class="t-en">A recovery companion for Android</span>
+        <span class="t-ar" lang="ar" dir="rtl">رفيق تعافٍ على Android</span>
+      </span>
+    </p>
+
+    <h1 class="hero__title" data-reveal style="--d:.08s">
+      <span class="t-en">
+        The fight is private.<br />
+        <em>So is the help.</em>
+      </span>
+      <span class="t-ar" lang="ar" dir="rtl">
+        المعركة خاصة.<br />
+        <em>والمساعدة كذلك.</em>
+      </span>
+    </h1>
+
+    <div class="hero__grid">
+      <p class="hero__lede" data-reveal style="--d:.16s">
+        <span class="t-en">
+          BreakFree — <span class="ar" lang="ar">تعافي</span>,
+          <em>recovery</em> — is an open-source Android companion for quitting
+          compulsive pornography use: a live clean-streak tracker, daily mood
+          &amp; urge check-ins, CBT-based SOS exercises, an AI counselor and an
+          anonymous community. Fully bilingual English /
+          <span class="ar" lang="ar">العربية</span> — and nothing leaves your
+          phone unless you agree.
+        </span>
+        <span class="t-ar" lang="ar" dir="rtl">
+          BreakFree — <span class="ar" lang="ar">تعافي</span> — هو تطبيق
+          Android مفتوح المصدر لترك استخدام المواد الإباحية القهري: عدّاد
+          <span class="lat" lang="en" dir="ltr">streak</span> حي، تسجيل يومي
+          للمزاج والرغبات، تمارين
+          <span class="lat" lang="en" dir="ltr">SOS</span> مبنية على
+          <span class="lat" lang="en" dir="ltr">CBT</span>، مستشار
+          <span class="lat" lang="en" dir="ltr">AI</span>، ومجتمع مجهول
+          الهوية. ثنائي اللغة بالكامل English /
+          <span class="ar" lang="ar">العربية</span> — ولا شيء يغادر هاتفك إلا
+          بموافقتك.
+        </span>
+      </p>
+
+      <div class="hero__cta" data-reveal style="--d:.24s">
+        <a class="btn btn--solid" href="#ledger">
+          <span class="t-en">Begin the tour</span>
+          <span class="t-ar" lang="ar" dir="rtl">ابدأ الجولة</span>
+        </a>
+        <a
+          class="btn btn--ghost"
+          href="https://github.com/YUouriii/taafi-app"
+          target="_blank"
+          rel="noopener noreferrer">
+          <span class="t-en">Source on GitHub ↗</span>
+          <span class="t-ar" lang="ar" dir="rtl">المصدر على GitHub ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__counter" data-reveal style="--d:.3s">
+    <div class="container hero__counter-row">
+      <p class="hero__counter-label mono">
+        <span>
+          <span class="t-en">Live preview — this streak began when you arrived</span>
+          <span class="t-ar" lang="ar" dir="rtl">عرض مباشر — هذا الـ streak بدأ لحظة دخولك</span>
+        </span>
+        <span class="hero__counter-note">
+          <span class="t-en">
+            In the app, the counter never flatters you and never lies: a
+            relapse recorded on any device wins over a longer streak. One
+            honest number.
+          </span>
+          <span class="t-ar" lang="ar" dir="rtl">
+            في التطبيق، العداد لا يجامل ولا يكذب: أي
+            <span class="lat" lang="en" dir="ltr">relapse</span> مسجّل على أي
+            جهاز يغلب دائمًا الـ streak الأطول. رقم واحد صادق.
+          </span>
+        </span>
+      </p>
+
+      <div
+        class="streak mono"
+        id="streak"
+        role="timer"
+        aria-label="Time elapsed on this page, shown as a demo streak counter"
+      >
+        <span class="streak__g"
+          ><span class="streak__n" id="sf-days">0</span
+          ><span class="streak__u"><span class="t-en">days</span><span class="t-ar" lang="ar" dir="rtl">أيام</span></span></span
+        >
+        <span class="streak__sep" aria-hidden="true">:</span>
+        <span class="streak__g"
+          ><span class="streak__n" id="sf-hours">00</span
+          ><span class="streak__u"><span class="t-en">hrs</span><span class="t-ar" lang="ar" dir="rtl">ساعات</span></span></span
+        >
+        <span class="streak__sep" aria-hidden="true">:</span>
+        <span class="streak__g"
+          ><span class="streak__n" id="sf-mins">00</span
+          ><span class="streak__u"><span class="t-en">min</span><span class="t-ar" lang="ar" dir="rtl">دقائق</span></span></span
+        >
+        <span class="streak__sep" aria-hidden="true">:</span>
+        <span class="streak__g" id="sf-sec-g"
+          ><span class="streak__n" id="sf-secs">00</span
+          ><span class="streak__u"><span class="t-en">sec</span><span class="t-ar" lang="ar" dir="rtl">ثوانٍ</span></span></span
+        >
+      </div>
+    </div>
+    <div class="hero__sun" aria-hidden="true"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-top: clamp(3.5rem, 8vw, 7rem);
+  }
+
+  /* the giant watermark — the app's name, quietly everywhere */
+  .hero__mark {
+    position: absolute;
+    top: clamp(0rem, 2vw, 2rem);
+    inset-inline-end: -1.5rem;
+    font-size: clamp(7rem, 20vw, 17rem);
+    line-height: 1;
+    color: var(--ink);
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+  }
+
+  html[data-theme="dark"] .hero__mark {
+    opacity: 0.07;
+  }
+
+  .hero__kicker {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    border-top: 1px solid var(--hairline-strong);
+    padding-top: 1.2rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .hero__kicker .ar {
+    font-size: 1.2em;
+    color: var(--dawn);
+  }
+
+  .hero__title {
+    font-size: clamp(2.9rem, 1.2rem + 7.4vw, 7.2rem);
+    line-height: 0.98;
+    margin-top: clamp(2.4rem, 5vw, 4rem);
+  }
+
+  html[lang="ar"] .hero__title {
+    line-height: 1.25;
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 2.5rem 4rem;
+    align-items: end;
+    margin-top: clamp(2rem, 4.5vw, 3.5rem);
+  }
+
+  .hero__lede {
+    font-size: 1.12em;
+    line-height: 1.7;
+    max-width: 36em;
+  }
+
+  html[lang="ar"] .hero__lede {
+    line-height: 2;
+  }
+
+  .hero__lede .ar {
+    color: var(--dawn-deep);
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    justify-self: end;
+  }
+
+  /* — the counter sits on the horizon line; the sun rises on it — */
+  .hero__counter {
+    position: relative;
+    margin-top: clamp(3rem, 6vw, 5rem);
+    border-top: 1px solid var(--hairline-strong);
+    border-bottom: 1px solid var(--hairline-strong);
+  }
+
+  .hero__sun {
+    position: absolute;
+    top: -25px;
+    inset-inline-end: 9%;
+    width: 50px;
+    height: 25px;
+    border-radius: 50px 50px 0 0;
+    background: linear-gradient(var(--dawn-bright), var(--dawn));
+    box-shadow: 0 0 70px 26px rgba(232, 130, 76, 0.3);
+    transform: translateY(var(--rise, 0));
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .hero__counter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    padding-block: clamp(1.8rem, 3.5vw, 2.8rem);
+  }
+
+  .hero__counter-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-width: 310px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .hero__counter-note {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.55;
+  }
+
+  .streak {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.7rem, 2vw, 1.4rem);
+    font-variant-numeric: tabular-nums;
+    direction: ltr; /* the counter itself always reads left-to-right */
+  }
+
+  .streak__g {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .streak__n {
+    font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    transition: color 0.45s var(--ease-out);
+  }
+
+  /* each second, the seconds digit breathes once in dawn color */
+  .streak__g.tick .streak__n {
+    color: var(--dawn);
+  }
+
+  .streak__u {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .streak__sep {
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    line-height: 1;
+    color: var(--dawn);
+    transform: translateY(-0.55rem);
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .hero__cta {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero__kicker-right {
+      display: none;
+    }
+
+    .hero__mark {
+      inset-inline-end: -3rem;
+    }
+
+    .hero__sun {
+      inset-inline-end: 50%;
+      margin-inline-end: -25px;
+    }
+
+    .hero__counter-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.4rem;
+    }
+  }
+</style>
+
+<script>
+  const ids = ["sf-days", "sf-hours", "sf-mins", "sf-secs"];
+  const els = ids.map((id) => document.getElementById(id));
+  const secGroup = document.getElementById("sf-sec-g");
+  if (els.every(Boolean)) {
+    const [days, hours, mins, secs] = els;
+    const start = Date.now();
+    const pad = (n: number) => String(n).padStart(2, "0");
+    let lastSecs = -1;
+    const tick = () => {
+      let s = Math.max(0, Math.floor((Date.now() - start) / 1000));
+      const d = Math.floor(s / 86400);
+      s %= 86400;
+      const h = Math.floor(s / 3600);
+      s %= 3600;
+      const m = Math.floor(s / 60);
+      const cur = s % 60;
+      days.textContent = String(d);
+      hours.textContent = pad(h);
+      mins.textContent = pad(m);
+      secs.textContent = pad(cur);
+      if (secGroup && cur !== lastSecs) {
+        lastSecs = cur;
+        secGroup.classList.add("tick");
+        setTimeout(() => secGroup.classList.remove("tick"), 450);
+      }
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>

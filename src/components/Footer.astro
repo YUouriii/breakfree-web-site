@@ -1,0 +1,147 @@
+---
+
+---
+
+<footer class="site-foot">
+  <div class="container site-foot__grid">
+    <div class="site-foot__about">
+      <p class="site-foot__brand">
+        <span class="site-foot__en">BreakFree</span>
+        <span class="site-foot__ar ar" lang="ar">تعافي</span>
+      </p>
+      <p class="site-foot__tag">
+        <span class="t-en">
+          An open-source recovery companion for Android, built from a hundred
+          small honest choices.
+        </span>
+        <span class="t-ar" lang="ar" dir="rtl">
+          رفيق تعافٍ مفتوح المصدر على Android، مبنيّ من مئة اختيار صغير صادق.
+        </span>
+      </p>
+    </div>
+
+    <nav class="site-foot__nav mono" aria-label="Footer">
+      <a href="https://github.com/YUouriii/taafi-app" target="_blank" rel="noopener noreferrer">Repository</a>
+      <a href="https://github.com/YUouriii/taafi-app/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      <a href="https://github.com/YUouriii/taafi-app#readme" target="_blank" rel="noopener noreferrer">README</a>
+    </nav>
+
+    <p class="site-foot__note mono">
+      <span class="t-en">No cookies. No analytics.<br />Nothing tracked — practice what we preach.</span>
+      <span class="t-ar" lang="ar" dir="rtl">لا كوكيز. لا تحليلات.<br />لا شيء يتتبّع — نطبّق ما نَعِدنا به.</span>
+    </p>
+  </div>
+
+  <div class="container site-foot__bottom mono">
+    <span>© 2026 BreakFree contributors</span>
+    <span>
+      <span class="t-en">This site is static. It collects nothing.</span>
+      <span class="t-ar" lang="ar" dir="rtl">هذا الموقع ثابت. لا يجمع شيئًا.</span>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .site-foot {
+    background: var(--night);
+    color: var(--cream);
+    transition:
+      background-color 0.5s var(--ease-out),
+      color 0.5s var(--ease-out);
+  }
+
+  .site-foot :focus-visible {
+    outline-color: var(--dawn-bright);
+  }
+
+  .site-foot__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 2.5rem 4rem;
+    padding-block: 3.5rem 2.5rem;
+  }
+
+  .site-foot__brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .site-foot__en {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+    font-weight: 560;
+    font-size: 1.3rem;
+  }
+
+  .site-foot__ar {
+    color: var(--dawn-bright);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .site-foot__tag {
+    margin-top: 0.8rem;
+    font-style: italic;
+    font-size: 0.98rem;
+    color: rgba(236, 228, 210, 0.65);
+    max-width: 34ch;
+  }
+
+  .site-foot__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .site-foot__nav a,
+  .site-foot__note {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .site-foot__nav a {
+    color: rgba(236, 228, 210, 0.7);
+    text-decoration: none;
+    transition: color 0.25s var(--ease-out);
+  }
+
+  .site-foot__nav a:hover {
+    color: var(--dawn-bright);
+  }
+
+  .site-foot__note {
+    color: rgba(236, 228, 210, 0.55);
+    line-height: 2;
+    text-align: right;
+    justify-self: end;
+  }
+
+  .site-foot__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--hairline-light);
+    padding-block: 1.3rem 2rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(236, 228, 210, 0.45);
+  }
+
+  @media (max-width: 860px) {
+    .site-foot__grid {
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+    }
+
+    .site-foot__note {
+      text-align: left;
+      justify-self: start;
+    }
+  }
+</style>

@@ -1,0 +1,100 @@
+---
+const phrases = [
+  { ar: "تعافي", en: "Recovery" },
+  { ar: "صبر", en: "Patience" },
+  { ar: "إرادة", en: "Willpower" },
+  { ar: "صفاء", en: "Clarity" },
+  { ar: "شجاعة", en: "Courage" },
+  { ar: "رجاء", en: "Hope" },
+  { ar: "بداية", en: "Day one" },
+  { ar: "سلام", en: "Peace" },
+];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {
+      [0, 1].map(() => (
+        <div class="marquee__half">
+          {phrases.map((p) => (
+            <span class="marquee__item">
+              <span class="marquee__ar ar" lang="ar">
+                {p.ar}
+              </span>
+              <span class="marquee__dot">·</span>
+              <span class="marquee__en mono">{p.en}</span>
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    border-block: 1px solid var(--hairline);
+    background: var(--paper);
+    transition: background-color 0.5s var(--ease-out);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 46s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  .marquee__half {
+    display: flex;
+    align-items: baseline;
+    gap: 3rem;
+    padding-inline-end: 3rem;
+    padding-block: 0.95rem;
+  }
+
+  .marquee__item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .marquee__ar {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  .marquee__dot {
+    color: var(--dawn);
+  }
+
+  .marquee__en {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* in Arabic mode, the strip flows the other way */
+  html[dir="rtl"] .marquee__track {
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+    }
+  }
+</style>

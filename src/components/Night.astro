@@ -1,0 +1,325 @@
+---
+const blocks = [
+  {
+    title: {
+      en: "The content monitor",
+      ar: "مراقب المحتوى",
+    },
+    tag: {
+      en: "Opt-in · On-device",
+      ar: "بموافقتك · على الجهاز",
+    },
+    text: {
+      en: "An accessibility layer matches visible text and the address bar of supported browsers — in memory, on this phone. Nothing is stored, logged or uploaded. Typing is not watching: if any field has focus, the window isn't scanned. Browser chrome is not content: search suggestions and most-visited tiles can never raise a reminder on their own.",
+      ar: "طبقة accessibility تطابق النص الظاهر وشريط العنوان في المتصفحات المدعومة — في الذاكرة، على هذا الهاتف. لا شيء يُخزَّن أو يُسجَّل أو يُرفَع. الكتابة ليست مراقبة: إذا كان أي حقل إدخال مُركَّزًا، لا تُفحص النافذة. وواجهة المتصفح ليست محتوى: اقتراحات البحث والمواقع الأكثر زيارة لا يمكنها إطلاق تنبيه من تلقاء نفسها.",
+    },
+  },
+  {
+    title: {
+      en: "The DNS Shield",
+      ar: "درع الـ DNS",
+    },
+    tag: {
+      en: "System-wide",
+      ar: "على مستوى النظام",
+    },
+    text: {
+      en: "Points Android's Private DNS at Cloudflare for Families, so adult and malware domains are refused before any app can connect. On unmanaged phones it runs as a VPN that carries DNS queries only — no page, video or message traffic passes through it. The resolver sees your lookups; BreakFree never does.",
+      ar: "يوجّه Private DNS في Android إلى Cloudflare for Families، فتُرفض نطاقات المحتوى للبالغين والبرمجيات الخبيثة قبل أن يتصل أي تطبيق. على الهواتف غير المُدارة يعمل كـ VPN ينقل استعلامات DNS فقط — لا تمرّ منه صفحات ولا فيديو ولا رسائل. المُحلِّل يرى استعلاماتك؛ وBreakFree لا يراها أبدًا.",
+    },
+  },
+  {
+    title: {
+      en: "Fences around the AI",
+      ar: "سياج حول الـ AI",
+    },
+    tag: {
+      en: "Chat text only",
+      ar: "نص المحادثة فقط",
+    },
+    text: {
+      en: "The counselor talks through Gemini on Firebase AI Logic, and the very first message opens a plain-language disclosure. Only chat text is ever sent — never your mood logs, never the monitor's findings, never your browsing. The social-app scope is a separate, wider consent you grant separately.",
+      ar: "يتحدث المستشار عبر Gemini على Firebase AI Logic، وأول رسالة تفتح إفصاحًا واضحًا. لا يُرسل إلا نص المحادثة — لا سجلّات المزاج، ولا نتائج المراقب، لا التصفح. ونطاق تطبيقات التواصل موافقة أوسع ومنفصلة تمنحها بقرار منفصل.",
+    },
+  },
+];
+
+const cannot = [
+  {
+    en: "It blocks domains — not images, videos or page text.",
+    ar: "يحجب النطاقات — لا الصور ولا الفيديو ولا نص الصفحات.",
+  },
+  {
+    en: "A VPN can bypass it entirely.",
+    ar: "أي VPN يمكنه تجاوزه بالكامل.",
+  },
+  {
+    en: "A browser with its own encrypted DNS — Chrome's “Secure DNS”, for example — can route around the system resolver.",
+    ar: "متصفح بـ DNS مشفّر خاص به — مثل «Secure DNS» في Chrome — يمكنه الالتفاف على مُحلِّل النظام.",
+  },
+  {
+    en: "It never sees your browsing history, and it cannot report what was blocked.",
+    ar: "لا يرى سجل تصفّحك أبدًا، ولا يمكنه إخبارك بما حُجب.",
+  },
+];
+---
+
+<section class="section night" id="night">
+  <div class="container night__grid">
+    <div class="night__intro">
+      <p class="section-label night__label" data-reveal>
+        <span class="t-en">The night shift</span>
+        <span class="t-ar" lang="ar" dir="rtl">المناوبة الليلية</span>
+      </p>
+      <h2 class="night__title" data-reveal style="--d:.06s">
+        <span class="t-en">
+          Built for<br /><em>3 a.m.</em>
+        </span>
+        <span class="t-ar" lang="ar" dir="rtl">
+          مبنيّ للساعة<br /><em>3 فجرًا.</em>
+        </span>
+      </h2>
+      <p class="night__lede" data-reveal style="--d:.12s">
+        <span class="t-en">
+          The tools that matter most work when nobody's watching — including
+          the app itself. Two shields, two separate consents, and one hard
+          rule: on-device first.
+        </span>
+        <span class="t-ar" lang="ar" dir="rtl">
+          الأدوات الأهم تعمل حين لا يراقبك أحد — بما في ذلك التطبيق نفسه.
+          درعان، موافقتان منفصلتان، وقاعدة واحدة صارمة: on-device أولًا.
+        </span>
+      </p>
+      <p class="night__crisis" data-reveal style="--d:.18s">
+        <span class="t-en">
+          Crisis messages never reach a server. Messages about self-harm are
+          intercepted before any model call and answered with real emergency
+          resources — in the user's language.
+        </span>
+        <span class="t-ar" lang="ar" dir="rtl">
+          رسائل الأزمة لا تصل إلى أي سيرفر. ما يتعلق بإيذاء النفس يُعترض قبل
+          أي استدعاء للنموذج، ويُجاب بمصادر طوارئ حقيقية — بلغة المستخدم.
+        </span>
+      </p>
+    </div>
+
+    <div class="night__stack">
+      {
+        blocks.map((b, i) => (
+          <article class="night__block" data-reveal style={`--d:${i * 0.06}s`}>
+            <header class="night__block-head">
+              <h3>
+                <span class="t-en">{b.title.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{b.title.ar}</span>
+              </h3>
+              <span class="night__tag mono">
+                <span class="t-en">{b.tag.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{b.tag.ar}</span>
+              </span>
+            </header>
+            <p>
+              <span class="t-en">{b.text.en}</span>
+              <span class="t-ar" lang="ar" dir="rtl">{b.text.ar}</span>
+            </p>
+          </article>
+        ))
+      }
+
+      <aside class="affidavit mono" data-reveal style="--d:.1s">
+        <p class="affidavit__title">
+          <span class="t-en">What the shield cannot do — read before you trust it</span>
+          <span class="t-ar" lang="ar" dir="rtl">ما لا يستطيع الدرع فعله — اقرأ قبل أن تثق</span>
+        </p>
+        <ul class="affidavit__list">
+          {
+            cannot.map((c) => (
+              <li>
+                <span class="t-en">{c.en}</span>
+                <span class="t-ar" lang="ar" dir="rtl">{c.ar}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="affidavit__closing">
+          <span class="t-en">
+            In short: a strong speed bump for the impulse, not a content
+            filter. The app says this itself — in English and in Arabic —
+            before you enable it.
+          </span>
+          <span class="t-ar" lang="ar" dir="rtl">
+            باختصار: عائق سرعة قوي للاندفاع، لا فلتر محتوى. والتطبيق يقول ذلك
+            بنفسه — بالإنجليزية والعربية — قبل أن تُفعّله.
+          </span>
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .night {
+    background: var(--night);
+    color: var(--cream);
+    box-shadow: inset 0 1px 0 rgba(232, 130, 76, 0.35);
+    transition:
+      background-color 0.5s var(--ease-out),
+      color 0.5s var(--ease-out);
+  }
+
+  .night :focus-visible {
+    outline-color: var(--dawn-bright);
+  }
+
+  .night ::selection {
+    background: var(--dawn-bright);
+    color: var(--night);
+  }
+
+  .night__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(3rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .night__label {
+    color: rgba(236, 228, 210, 0.55);
+  }
+
+  .night__label::before {
+    background: var(--dawn-bright);
+  }
+
+  .night__title {
+    font-size: clamp(2.7rem, 1.4rem + 5vw, 5rem);
+    margin-top: 1.6rem;
+  }
+
+  .night__title em {
+    color: var(--dawn-bright);
+  }
+
+  html[lang="ar"] .night__title em {
+    color: var(--dawn-bright);
+  }
+
+  .night__lede {
+    margin-top: 1.6rem;
+    font-size: 1.08em;
+    color: rgba(236, 228, 210, 0.82);
+    max-width: 30em;
+  }
+
+  .night__crisis {
+    margin-top: 2rem;
+    border-inline-start: 2px solid var(--dawn-bright);
+    padding-inline-start: 1.2rem;
+    font-style: italic;
+    color: rgba(236, 228, 210, 0.9);
+    max-width: 28em;
+  }
+
+  html[lang="ar"] .night__crisis {
+    font-style: normal;
+  }
+
+  .night__intro {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .night__block {
+    border-top: 1px solid var(--hairline-light);
+    padding-block: 2rem;
+  }
+
+  .night__block:last-of-type {
+    border-bottom: 1px solid var(--hairline-light);
+  }
+
+  .night__block-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .night__block h3 {
+    font-size: clamp(1.3rem, 2vw, 1.55rem);
+    line-height: 1.2;
+  }
+
+  .night__tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dawn-bright);
+    white-space: nowrap;
+  }
+
+  .night__block p {
+    color: rgba(236, 228, 210, 0.75);
+    max-width: 58ch;
+  }
+
+  /* fine-print panel — the honesty clause */
+  .affidavit {
+    margin-top: 3rem;
+    border: 1px solid rgba(232, 130, 76, 0.5);
+    padding: 1.7rem 1.9rem;
+    font-size: 0.8rem;
+    font-weight: 450;
+    line-height: 1.75;
+    letter-spacing: 0.015em;
+    color: rgba(236, 228, 210, 0.85);
+  }
+
+  .affidavit__title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dawn-bright);
+    margin-bottom: 1.1rem;
+  }
+
+  .affidavit__list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .affidavit__list li::before {
+    content: "—";
+    color: var(--dawn-bright);
+    margin-inline-end: 0.7em;
+  }
+
+  .affidavit__closing {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--hairline-light);
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.95rem;
+    letter-spacing: 0;
+    color: rgba(236, 228, 210, 0.72);
+  }
+
+  html[lang="ar"] .affidavit__closing {
+    font-style: normal;
+  }
+
+  @media (max-width: 960px) {
+    .night__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .night__intro {
+      position: static;
+    }
+  }
+</style>

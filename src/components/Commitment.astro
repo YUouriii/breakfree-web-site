@@ -1,0 +1,194 @@
+---
+const stops = [
+  {
+    day: "Day 01",
+    ar: "اليوم ٠١",
+    en: "The counter starts at zero. Nothing is seeded, nothing is fabricated.",
+    arText: "العداد يبدأ من الصفر. لا شيء مُزروع مسبقًا، ولا شيء مُلفَّق.",
+  },
+  {
+    day: "Day 07",
+    ar: "اليوم ٠٧",
+    en: "Check-ins have become a habit you keep in thirty seconds a day.",
+    arText: "الـ check-in صار عادة تحافظ عليها بثلاثين ثانية في اليوم.",
+  },
+  {
+    day: "Day 30",
+    ar: "اليوم ٣٠",
+    en: "The merge policy has been quietly protecting your streak for a month.",
+    arText: "سياسة الدمج كانت تحمي الـ streak بصمت منذ شهر.",
+  },
+  {
+    day: "Day 90",
+    ar: "اليوم ٩٠",
+    en: "The uninstall lock releases itself. You stayed because you stayed.",
+    arText: "قفل إزالة التطبيق يفك نفسه. بقيتَ لأنك بقيت.",
+  },
+];
+---
+
+<section class="section" id="promise">
+  <div class="container">
+    <p class="section-label" data-reveal>
+      <span class="t-en">The promise</span>
+      <span class="t-ar" lang="ar" dir="rtl">العهد</span>
+    </p>
+    <h2 class="commit__title" data-reveal style="--d:.06s">
+      <span class="t-en">Ninety days, <em>sealed.</em></span>
+      <span class="t-ar" lang="ar" dir="rtl">تسعون يومًا، <em>مختومة.</em></span>
+    </h2>
+    <p class="commit__lede" data-reveal style="--d:.12s">
+      <span class="t-en">
+        The DNS Shield turns on with its disclosure; the uninstall lock is the
+        one piece you opt into. For ninety days, removing the app takes more
+        than a bad night's willpower — and when the commitment ends, the lock
+        lifts itself. No hostage-taking.
+      </span>
+      <span class="t-ar" lang="ar" dir="rtl">
+        درع الـ DNS يُفعَّل مع الإفصاح الخاص به؛ وقفل إزالة التطبيق هو القطعة
+        الوحيدة التي تدخل فيها بإرادتك. لتسعين يومًا، تكون إزالة التطبيق أصعب
+        من إرادة ليلة سيئة — وحين ينتهي العهد، يفك القفل نفسه. لا رهائن هنا.
+      </span>
+    </p>
+
+    <ol class="timeline" data-reveal style="--d:.18s">
+      {
+        stops.map((s) => (
+          <li class="timeline__stop">
+            <span class="timeline__day mono">
+              <span class="t-en">{s.day}</span>
+              <span class="t-ar" lang="ar" dir="rtl">{s.ar}</span>
+            </span>
+            <p class="timeline__text">
+              <span class="t-en">{s.en}</span>
+              <span class="t-ar" lang="ar" dir="rtl">{s.arText}</span>
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="commit__foot" data-reveal style="--d:.1s">
+      <span class="t-en">
+        On managed (Device Owner) devices, the shield can also lock Android's
+        Private-DNS setting for the same ninety days — and it releases that
+        restriction before letting go of the role, so your phone is never left
+        unable to resolve names.
+      </span>
+      <span class="t-ar" lang="ar" dir="rtl">
+        على الأجهزة المُدارة (Device Owner)، يستطيع الدرع أيضًا قفل إعداد
+        Private DNS لنفس التسعين يومًا — ويرفع هذا القيد قبل التخلي عن الدور،
+        فلا يُترك هاتفك عاجزًا أبدًا عن تحليل الأسماء.
+      </span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .commit__title {
+    margin-top: 1.6rem;
+  }
+
+  .commit__lede {
+    margin-top: 1.6rem;
+    max-width: 52ch;
+    color: color-mix(in srgb, var(--ink) 85%, var(--paper));
+  }
+
+  /* horizontal rail on wide screens, vertical rail on small ones */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin-top: clamp(3.5rem, 7vw, 5.5rem);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    inset-inline: 0;
+    height: 1px;
+    background: var(--hairline-strong);
+  }
+
+  .timeline__stop {
+    position: relative;
+    padding-top: 2.4rem;
+  }
+
+  .timeline__stop::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--dawn);
+  }
+
+  .timeline__stop:last-child::before {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--dawn) 22%, transparent);
+  }
+
+  .timeline__day {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline__text {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--ink) 85%, var(--paper));
+    max-width: 26ch;
+  }
+
+  .commit__foot {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--hairline);
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 70ch;
+  }
+
+  html[lang="ar"] .commit__foot {
+    font-style: normal;
+  }
+
+  @media (max-width: 760px) {
+    .timeline {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .timeline::before {
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 1px;
+      height: auto;
+    }
+
+    .timeline__stop {
+      padding-block-end: 2rem;
+      padding-inline-start: 2.2rem;
+    }
+
+    .timeline__stop:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline__text {
+      max-width: none;
+    }
+  }
+</style>

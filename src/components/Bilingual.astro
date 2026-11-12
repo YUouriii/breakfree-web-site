@@ -1,0 +1,112 @@
+---
+---
+
+<section class="section bilingual-sec" id="language">
+  <div class="container">
+    <p class="section-label" data-reveal>
+      <span class="t-en">Two tongues, one promise</span>
+      <span class="t-ar" lang="ar" dir="rtl">لسانان، وعدٌ واحد</span>
+    </p>
+
+    <div class="bilingual">
+      <p
+        class="bilingual__line bilingual__en"
+        lang="en"
+        dir="ltr"
+        data-reveal
+        style="--d:.08s"
+      >
+        &ldquo;Nothing leaves your phone unless you agree.&rdquo;
+      </p>
+      <p
+        class="bilingual__line bilingual__ar"
+        lang="ar"
+        dir="rtl"
+        data-reveal
+        style="--d:.16s"
+      >
+        لا شيء يغادر هاتفك إلا بموافقتك.
+      </p>
+    </div>
+
+    <p class="bilingual__note" data-reveal style="--d:.2s">
+      <span class="t-en">
+        Every disclosure, every exercise, every crisis reply — fully bilingual
+        with complete right-to-left layout. Not translated after the fact;
+        designed for both from the first line of code. This whole site speaks
+        both — use the toggle in the header.
+      </span>
+      <span class="t-ar" lang="ar" dir="rtl">
+        كل إفصاح، وكل تمرين، وكل ردّ أزمة — ثنائي اللغة بالكامل، بتخطيط يبدأ
+        من اليمين. ليست ترجمة لاحقة؛ بل تصميمٌ للغتين منذ أول سطر. وهذا
+        الموقع نفسه يتحدث اللغتين — بدّل الزر في الأعلى.
+      </span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .bilingual {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .bilingual__line {
+    font-size: clamp(1.7rem, 1.1rem + 2.6vw, 2.8rem);
+    line-height: 1.4;
+  }
+
+  .bilingual__en {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 60, "WONK" 1;
+    font-style: italic;
+    padding-inline-end: clamp(1.5rem, 4vw, 3.5rem);
+    border-inline-end: 1px solid var(--hairline-strong);
+  }
+
+  .bilingual__ar {
+    font-family: var(--font-arabic);
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--dawn-deep);
+    padding-inline-start: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .bilingual__line .lat {
+    font-size: 0.62em;
+  }
+
+  .bilingual__line:hover {
+    color: var(--dawn-deep);
+  }
+
+  .bilingual__note {
+    margin-top: clamp(2.2rem, 4vw, 3rem);
+    max-width: 60ch;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  html[lang="ar"] .bilingual__note {
+    font-style: normal;
+  }
+
+  @media (max-width: 860px) {
+    .bilingual {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .bilingual__en {
+      padding-inline-end: 0;
+      border-inline-end: 0;
+      padding-block-end: 2rem;
+      border-block-end: 1px solid var(--hairline-strong);
+    }
+
+    .bilingual__ar {
+      padding-inline-start: 0;
+    }
+  }
+</style>

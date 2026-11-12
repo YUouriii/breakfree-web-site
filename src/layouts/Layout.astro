@@ -1,0 +1,113 @@
+---
+import "../styles/global.css";
+
+// Self-hosted fonts via Fontsource (no third-party requests at runtime):
+// Fraunces (display, all axes incl. SOFT/WONK), Newsreader (text, optical sizing),
+// Spline Sans Mono (labels, counters), Amiri (Arabic display type).
+import "@fontsource-variable/fraunces/full.css";
+import "@fontsource-variable/fraunces/full-italic.css";
+import "@fontsource-variable/newsreader/opsz.css";
+import "@fontsource-variable/newsreader/opsz-italic.css";
+import "@fontsource-variable/spline-sans-mono";
+import "@fontsource/amiri/arabic.css";
+import "@fontsource/amiri/arabic-700.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f6f1e7" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BreakFree / تعافي" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      // Apply saved theme + language before first paint (no flash).
+      (function () {
+        var d = document.documentElement;
+        try {
+          var t =
+            localStorage.getItem("bf-theme") ||
+            (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          d.dataset.theme = t;
+          var l = localStorage.getItem("bf-lang") || "en";
+          d.lang = l;
+          d.dir = l === "ar" ? "rtl" : "ltr";
+          if (t === "dark") {
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute("content", "#16120d");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <noscript>
+      <style>
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+    <slot />
+
+    <script>
+      // Scroll: progress bar + the hero sun rises as you leave the top.
+      const bar = document.getElementById("progress");
+      const sun = document.querySelector<HTMLElement>(".hero__sun");
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const max =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+          if (bar) bar.style.transform = `scaleX(${p})`;
+          if (sun) sun.style.setProperty("--rise", `${(-p * 90).toFixed(1)}px`);
+          ticking = false;
+        });
+      };
+      addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      // Scroll-triggered reveals — one tiny observer, no framework.
+      const targets = document.querySelectorAll("[data-reveal]");
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        targets.forEach((el) => io.observe(el));
+      } else {
+        targets.forEach((el) => el.classList.add("is-in"));
+      }
+
+      export {};
+    </script>
+  </body>
+</html>

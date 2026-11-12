@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="404 — BreakFree / تعافي"
+  description="Page not found — this path doesn't exist."
+>
+  <main class="lost">
+    <p class="lost__code mono">404</p>
+    <h1 class="lost__title">
+      <span class="t-en">This page wandered off the path.</span>
+      <span class="t-ar" lang="ar" dir="rtl">هذه الصفحة ضلّت الطريق.</span>
+    </h1>
+    <a class="btn btn--ghost" href="/">
+      <span class="t-en">← Back to day one</span>
+      <span class="t-ar" lang="ar" dir="rtl">← العودة إلى اليوم الأول</span>
+    </a>
+  </main>
+</Layout>
+
+<style>
+  .lost {
+    min-height: 100dvh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1.6rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .lost__code {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    letter-spacing: 0.3em;
+    color: var(--dawn);
+  }
+
+  .lost__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+</style>

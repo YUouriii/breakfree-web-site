@@ -1,0 +1,7 @@
+packages: []
+
+# esbuild & sharp ship prebuilt platform binaries; their install scripts
+# only verify/link them. Explicitly allowed for Astro builds.
+allowBuilds:
+  esbuild: true
+  sharp: true
