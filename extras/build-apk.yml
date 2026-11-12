@@ -66,13 +66,41 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
-      - name: Build debug APK
-        run: ./gradlew :app:assembleDebug --stacktrace
-
-      - name: Rename APK
+      # Restore the release upload key so every CI build is signed with the
+      # SAME certificate as the local/Play builds. Without this the APK is
+      # debug-signed: users cannot upgrade over an existing install and
+      # Google Sign-In / App Check reject the app (SHA-1 mismatch).
+      - name: Restore release keystore
+        env:
+          RELEASE_KEYSTORE_B64: ${{ secrets.RELEASE_KEYSTORE_B64 }}
         run: |
+          if [ -n "$RELEASE_KEYSTORE_B64" ]; then
+            echo "$RELEASE_KEYSTORE_B64" | base64 -d > my-upload-key.jks
+            echo "KEYSTORE_PATH=$PWD/my-upload-key.jks" >> "$GITHUB_ENV"
+            echo "Release keystore restored."
+          else
+            echo "No RELEASE_KEYSTORE_B64 secret - building without it."
+          fi
+
+      - name: Build APK
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          set -e
           mkdir -p out
-          cp app/build/outputs/apk/debug/app-debug.apk out/BreakFree.apk
+          if [ -f my-upload-key.jks ]; then
+            ./gradlew :app:assembleRelease --stacktrace \
+              || ./gradlew :app:assembleDebug --stacktrace
+            APK=$(find app/build/outputs/apk/release -name "*.apk" 2>/dev/null | head -1)
+            [ -n "$APK" ] || APK=$(find app/build/outputs/apk/debug -name "*.apk" | head -1)
+          else
+            ./gradlew :app:assembleDebug --stacktrace
+            APK=$(find app/build/outputs/apk/debug -name "*.apk" | head -1)
+          fi
+          cp "$APK" out/BreakFree.apk
+          ls -lh out/BreakFree.apk
 
       - name: Attach APK to release
         uses: softprops/action-gh-release@v2
@@ -82,7 +110,7 @@ jobs:
 
       # Tell the website to rebuild so it picks up this release: the site
       # fetches the latest APK and shows the new version number. Create the
-      # hook in Netlify (Site configuration → Build & deploy → Build hooks)
+      # hook in Netlify (Site configuration -> Build & deploy -> Build hooks)
       # and store its URL here as the NETLIFY_BUILD_HOOK secret.
       - name: Rebuild the website
         env:
@@ -92,5 +120,5 @@ jobs:
             curl -sS -X POST "$NETLIFY_BUILD_HOOK" -o /dev/null \
               -w "Website rebuild requested (HTTP %{http_code})\n"
           else
-            echo "NETLIFY_BUILD_HOOK is not set — skipping the website rebuild."
+            echo "NETLIFY_BUILD_HOOK is not set - skipping the website rebuild."
           fi
