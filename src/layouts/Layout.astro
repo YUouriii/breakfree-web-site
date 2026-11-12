@@ -14,6 +14,12 @@ import "@fontsource/amiri/arabic-700.css";
 
 import release from "../data/release.json";
 
+// Google Search Console verification token.
+// Paste the token from search.google.com/search-console (the "HTML tag"
+// method) between the quotes, then deploy — Google verifies it on the next
+// request. Empty until then, in which case no tag is rendered.
+const GOOGLE_VERIFICATION = "";
+
 interface Props {
   title: string;
   description: string;
@@ -31,6 +37,11 @@ const { title, description } = Astro.props;
     <meta name="theme-color" content="#f6f1e7" />
     <meta name="color-scheme" content="light dark" />
     <meta name="generator" content={Astro.generator} />
+    {
+      GOOGLE_VERIFICATION && (
+        <meta name="google-site-verification" content={GOOGLE_VERIFICATION} />
+      )
+    }
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="BreakFree / تعافي" />
     <meta property="og:title" content={title} />

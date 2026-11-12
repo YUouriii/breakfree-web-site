@@ -1,28 +1,28 @@
-# ─────────────────────────────────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # HOW TO USE THIS FILE
 #
 # 1. Copy this file into the taafi-app repository as:
 #       .github/workflows/build-apk.yml
 #
 # 2. Add ONE repository secret:
-#       Settings → Secrets and variables → Actions → New repository secret
+#       Settings â†’ Secrets and variables â†’ Actions â†’ New repository secret
 #       Name:  GOOGLE_SERVICES_JSON
 #       Value: the full contents of app/google-services.json
 #    (that file is gitignored in the app repo, so CI needs it as a secret)
 #
 # 3. Publish a release: either push a tag (v1.0.0) or run the workflow
 #    manually from the Actions tab. The APK is attached to the release as
-#    "BreakFree.apk" — exactly the filename the website's download button
+#    "BreakFree.apk" â€” exactly the filename the website's download button
 #    points to:
 #
 #    https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk
 #
 # NOTE ON SIGNING: CI builds a debug-signed APK (installable, side-loadable).
 # Google Sign-In / App Check validate the signing key's SHA-1, and a fresh CI
-# keystore differs from your local one — enable the "Restore debug keystore"
+# keystore differs from your local one â€” enable the "Restore debug keystore"
 # step below (with a DEBUG_KEYSTORE_B64 secret) so every build is signed with
 # the same key, or configure a real release keystore before Play release.
-# ─────────────────────────────────────────────────────────────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 name: Build APK
 
@@ -37,16 +37,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "17"
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       # Optional but recommended: same signing key on every CI build.
       # Store your debug keystore base64-encoded as DEBUG_KEYSTORE_B64:
@@ -108,7 +108,7 @@ jobs:
           ls -lh out/BreakFree.apk
 
       - name: Attach APK to release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: out/BreakFree.apk
           generate_release_notes: true
