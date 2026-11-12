@@ -1,4 +1,9 @@
 ---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+const apkLocal = fileURLToPath(new URL("../../public/BreakFree.apk", import.meta.url));
+const apkHref = existsSync(apkLocal) ? "/BreakFree.apk" : "https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk";
 ---
 
 <section class="section cta" id="source">
@@ -29,7 +34,8 @@
     <div class="cta__actions" data-reveal style="--d:.14s">
       <a
         class="btn btn--solid"
-        href="https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk"
+        href={apkHref}
+        download="BreakFree.apk"
       >
         <span class="t-en">Download the APK</span>
         <span class="t-ar" lang="ar" dir="rtl">حمّل الـ <span class="lat" lang="en" dir="ltr">APK</span></span>

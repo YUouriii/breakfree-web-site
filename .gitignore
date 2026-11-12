@@ -2,3 +2,7 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# fetched at build time by scripts/fetch-apk.mjs — never committed
+public/BreakFree.apk
+public/BreakFree.apk.part
