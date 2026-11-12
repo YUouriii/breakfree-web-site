@@ -21,16 +21,18 @@ companion for quitting compulsive pornography use. Source of the app:
 | `pnpm build`      | Production build to `./dist/`            |
 | `pnpm preview`    | Preview the production build locally     |
 
-## Deploy (Netlify)
+## Deploy (Cloudflare Pages)
 
-The repo is Netlify-ready (`netlify.toml`): build command `pnpm build`,
-publish directory `dist`, Node 22 + pnpm 11.17.0 pinned, immutable caching
-for hashed `/_astro/*` assets, and basic security headers.
+The repo is ready for Cloudflare Pages (`public/_headers` ships the caching
+and security headers; Astro output is fully static).
 
 1. Push changes to `main`.
-2. On Netlify: **Add new site → Import an existing project → GitHub →
-   `breakfree-web-site` → Deploy** (settings are read from `netlify.toml`).
-3. Every push to `main` redeploys automatically; PRs get preview URLs.
+2. On Cloudflare: **Workers & Pages → Create → Pages → Connect to Git →
+   `breakfree-web-site`**.
+3. Build settings: framework preset **Astro**, build command `pnpm build`,
+   output directory `dist`, environment variable `NODE_VERSION = 22`.
+4. Every push to `main` redeploys automatically; the production URL is
+   `https://<project>.pages.dev`.
 
 
 ## Structure

@@ -1,0 +1,10 @@
+# Cloudflare Pages header rules
+# Astro hashes every asset file name — cache them forever
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sensible hardening for a fully static, tracking-free site
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
