@@ -91,11 +91,16 @@ jobs:
           set -e
           mkdir -p out
           if [ -f my-upload-key.jks ]; then
-            ./gradlew :app:assembleRelease --stacktrace \
-              || ./gradlew :app:assembleDebug --stacktrace
+            # Signed with the real upload key. If this fails we stop, rather
+            # than publishing a debug-signed APK that users cannot upgrade to.
+            ./gradlew :app:assembleRelease --stacktrace
             APK=$(find app/build/outputs/apk/release -name "*.apk" 2>/dev/null | head -1)
-            [ -n "$APK" ] || APK=$(find app/build/outputs/apk/debug -name "*.apk" | head -1)
+            if [ -z "$APK" ]; then
+              echo "Release build produced no APK - aborting." >&2
+              exit 1
+            fi
           else
+            # No keystore secret configured: fall back to a debug build.
             ./gradlew :app:assembleDebug --stacktrace
             APK=$(find app/build/outputs/apk/debug -name "*.apk" | head -1)
           fi
