@@ -124,6 +124,9 @@
   .hero {
     position: relative;
     padding-top: clamp(3.5rem, 8vw, 7rem);
+    /* contain the giant watermark on narrow screens (fallback + clip) */
+    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* the giant watermark — the app's name, quietly everywhere */

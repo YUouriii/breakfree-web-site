@@ -268,6 +268,36 @@ const links = [
       display: none;
     }
   }
+
+  @media (max-width: 480px) {
+    /* compact header so nothing overflows a 320–400px phone */
+    .brand__ar {
+      display: none;
+    }
+
+    .site-head__row {
+      gap: 0.75rem;
+    }
+
+    .site-head__toggles {
+      gap: 0.35rem;
+    }
+
+    .site-head__dl {
+      font-size: 0.62rem;
+      padding: 0.45em 0.75em;
+    }
+
+    .tgl {
+      min-width: 1.9rem;
+      height: 1.9rem;
+    }
+
+    .tgl svg {
+      width: 13px;
+      height: 13px;
+    }
+  }
 </style>
 
 <script>

@@ -81,6 +81,8 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* hidden first as a fallback for browsers without `clip` (older iOS) */
+  overflow-x: hidden;
   overflow-x: clip;
   transition: background-color 0.5s var(--ease-out), color 0.5s var(--ease-out);
 }
