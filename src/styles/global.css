@@ -238,6 +238,17 @@ html[lang="ar"] .btn {
   letter-spacing: 0;
 }
 
+/* Arabic script reads smaller than Latin at the same point size, so the
+   mono micro-labels get an optical bump in Arabic. */
+html[lang="ar"] .mono {
+  font-size: 0.82rem;
+  text-transform: none;
+}
+
+html[lang="ar"] .section-label {
+  font-size: 0.88rem;
+}
+
 /* buttons — pill-shaped, mono caps, honest hover states */
 .btn {
   display: inline-flex;
