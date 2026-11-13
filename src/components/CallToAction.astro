@@ -81,6 +81,10 @@ const mb = (release.size / 1048576).toFixed(1);
         <span class="lat" lang="en" dir="ltr">APK</span> يُبنى من المصدر
         العام؛ وهذا الموقع لا يضيف عليه شيئًا.
       </span>
+      <a class="cta__install-link" href="#install">
+        <span class="t-en">Step-by-step: installing without the scare screen →</span>
+        <span class="t-ar" lang="ar" dir="rtl">خطوة بخطوة: التثبيت بلا شاشة التخويف ←</span>
+      </a>
     </p>
 
     <p class="cta__links mono" data-reveal style="--d:.18s">
@@ -177,6 +181,31 @@ const mb = (release.size / 1048576).toFixed(1);
 
   html[lang="ar"] .cta__install {
     font-style: normal;
+  }
+
+  .cta__install-link {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dawn-deep);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.15em;
+    transition: color 0.25s var(--ease-out);
+  }
+
+  .cta__install-link:hover {
+    color: var(--ink);
+  }
+
+  html[lang="ar"] .cta__install-link {
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.85rem;
   }
 
   .cta__links {

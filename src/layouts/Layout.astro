@@ -101,6 +101,59 @@ const { title, description } = Astro.props;
               "https://github.com/YUouriii/taafi-app/releases/latest/download/BreakFree.apk",
             sameAs: ["https://github.com/YUouriii/taafi-app"],
           },
+          {
+            "@type": "HowTo",
+            name: "How to install BreakFree on Android",
+            inLanguage: ["en", "ar"],
+            description:
+              "Install the BreakFree (تعافي) APK on an Android phone: allow the unknown source, answer the Play Protect prompt, and verify the signature fingerprint.",
+            totalTime: "PT3M",
+            supply: [
+              {
+                "@type": "HowToSupply",
+                name: "BreakFree APK",
+                url: new URL("/BreakFree.apk", Astro.site).href,
+              },
+            ],
+            tool: [
+              {
+                "@type": "HowToTool",
+                name: "Android Files app / Settings",
+              },
+            ],
+            step: [
+              {
+                "@type": "HowToStep",
+                name: "Download the APK",
+                text: "Tap the download button; the file lands in your Downloads folder.",
+                url: new URL("/#install", Astro.site).href,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Open it from Files",
+                text: "Open Files → Downloads → BreakFree.apk, then tap Install.",
+                url: new URL("/#install", Astro.site).href,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Allow this source, once",
+                text: "In Settings → Install unknown apps, allow the app you are opening the file with (Files or Chrome), then return and install.",
+                url: new URL("/#install", Astro.site).href,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Answer the Play Protect prompt",
+                text: "Play Protect flags any app it has never seen outside the Play Store. Choose “install anyway”, or turn off “Scan apps that have been installed from outside of the Play Store” in Play Store → Play Protect → Settings.",
+                url: new URL("/#install", Astro.site).href,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Open the app and sign in",
+                text: "Launch BreakFree and sign in with Google to begin.",
+                url: new URL("/#install", Astro.site).href,
+              },
+            ],
+          },
         ],
       })}
     />
