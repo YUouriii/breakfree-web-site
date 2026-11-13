@@ -1,15 +1,4 @@
 ---
-import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-
-const apkLocal = fileURLToPath(new URL("../../public/BreakFree.apk", import.meta.url));
-// Serve the APK same-origin when the build fetched it (mobile browsers
-// handle that far better than GitHub's redirect chain); otherwise fall
-// back to the GitHub release page.
-const apkHref = existsSync(apkLocal)
-  ? "/BreakFree.apk"
-  : "https://github.com/YUouriii/taafi-app/releases/latest";
-
 const links = [
   {
     href: "#ledger",
@@ -58,16 +47,6 @@ const links = [
         rel="noopener noreferrer">
         <span class="t-en">Source ↗</span>
         <span class="t-ar" lang="ar" dir="rtl">المصدر ↗</span>
-      </a>
-
-      <a
-        href={apkHref}
-        class="site-head__dl"
-        download="BreakFree.apk"
-        data-apk-dl
-      >
-        <span class="t-en">Download APK</span>
-        <span class="t-ar" lang="ar" dir="rtl">تنزيل الـ <span class="lat" lang="en" dir="ltr">APK</span></span>
       </a>
 
       <div class="site-head__toggles">
@@ -191,24 +170,6 @@ const links = [
     color: var(--paper) !important;
   }
 
-  .site-head__dl {
-    background: var(--dawn);
-    border: 1px solid var(--dawn);
-    border-radius: 999px;
-    padding: 0.45em 1.1em;
-    color: #fdf7ec !important;
-    transition:
-      background-color 0.25s var(--ease-out),
-      border-color 0.25s var(--ease-out),
-      transform 0.25s var(--ease-out);
-  }
-
-  .site-head__dl:hover {
-    background: var(--dawn-deep);
-    border-color: var(--dawn-deep);
-    transform: translateY(-1px);
-  }
-
   .site-head__toggles {
     display: flex;
     align-items: center;
@@ -281,8 +242,8 @@ const links = [
   }
 
   @media (max-width: 720px) {
-    /* on small screens keep only the download pill + toggles */
-    .site-head__nav a:not(.site-head__dl) {
+    /* small screens: keep the brand + toggles, drop the nav links */
+    .site-head__nav a {
       display: none;
     }
   }
@@ -299,11 +260,6 @@ const links = [
 
     .site-head__toggles {
       gap: 0.35rem;
-    }
-
-    .site-head__dl {
-      font-size: 0.62rem;
-      padding: 0.45em 0.75em;
     }
 
     .tgl {
