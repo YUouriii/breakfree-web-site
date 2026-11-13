@@ -1,5 +1,13 @@
 ---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import release from "../data/release.json";
+
+const apkLocal = fileURLToPath(new URL("../../public/BreakFree.apk", import.meta.url));
+const apkHref = existsSync(apkLocal)
+  ? "/BreakFree.apk"
+  : "https://github.com/YUouriii/taafi-app/releases/latest";
+const tag = release.tag.replace(/^v/, "");
 
 const CERT_SHA256 =
   "cfbe0eb1227d7af977f8dae122d1deb1fd18e0e30108a4bcad05472a786d0ba7";
@@ -90,29 +98,55 @@ const trust = [
 <section class="section install" id="install">
   <div class="container">
     <p class="section-label" data-reveal>
-      <span class="t-en">Installing</span>
-      <span class="t-ar" lang="ar" dir="rtl">التثبيت</span>
+      <span class="t-en">Before you download</span>
+      <span class="t-ar" lang="ar" dir="rtl">قبل أن تنزّل</span>
     </p>
     <h2 class="install__title" data-reveal style="--d:.06s">
-      <span class="t-en">Why your phone<br /><em>will warn you.</em></span>
+      <span class="t-en">Your phone is going<br /><em>to warn you.</em></span>
       <span class="t-ar" lang="ar" dir="rtl">
-        لماذا سيحذّرك<br /><em>هاتفك؟</em>
+        سيحذّرك هاتفك.<br /><em>وهذا متوقّع.</em>
       </span>
     </h2>
-    <p class="install__lede" data-reveal style="--d:.1s">
+
+    <aside class="install__notice" data-reveal style="--d:.1s">
+      <p class="install__notice-tag mono">
+        <span class="t-en">Heads-up</span>
+        <span class="t-ar" lang="ar" dir="rtl">تنبيه</span>
+      </p>
+      <p class="install__notice-body">
+        <span class="t-en">
+          The moment you install BreakFree, Android will warn you about an
+          unknown source, and Play Protect will say it hasn't seen this app
+          before. That is what happens with every app outside the Play Store.
+          It is a formality, not a finding. Read this once, then download
+          with your eyes open.
+        </span>
+        <span class="t-ar" lang="ar" dir="rtl">
+          في اللحظة التي تثبّت فيها BreakFree، سيحذّرك أندرويد من مصدر غير
+          معروف، ويقول Play Protect إنه لم يرَ هذا التطبيق من قبل. هذا ما
+          يحدث مع كل تطبيق خارج متجر Play. إجراء شكلي، لا حكم. اقرأ هذا مرة
+          واحدة، ثم نزّل وأنت تعرف ما الذي سيحدث.
+        </span>
+      </p>
+    </aside>
+
+    <p class="install__lede" data-reveal style="--d:.12s">
       <span class="t-en">
-        Almost everyone who installs BreakFree sees a scary screen first. Here
-        is exactly what it says, why it says it, and how to get past it in
-        five steps.
+        Here is exactly what the warning says, why it says it, what to tap,
+        and how to verify the file is ours.
       </span>
       <span class="t-ar" lang="ar" dir="rtl">
-        كلّ من يثبّت BreakFree يرى شاشة مخيفة أولًا. إليك ما تقوله حرفيًا،
-        ولماذا تقولها، وكيف تتجاوزها في خمس خطوات.
+        إليك ما تقوله التحذير حرفيًا، ولماذا يقوله، وما الذي تضغطه، وكيف
+        تتحقّق أن الملف ملفنا.
       </span>
     </p>
 
     <div class="install__grid">
       <div class="install__why">
+        <p class="install__col-label mono" data-reveal style="--d:.12s">
+          <span class="t-en">What the warning means</span>
+          <span class="t-ar" lang="ar" dir="rtl">ماذا يعني التحذير</span>
+        </p>
         {
           why.map((w, i) => (
             <article class="install__card" data-reveal style={`--d:${0.12 + i * 0.05}s`}>
@@ -195,6 +229,25 @@ const trust = [
               على GitHub.
             </span>
           </p>
+          <div class="install__get">
+            <a
+              class="btn btn--solid"
+              href={apkHref}
+              download="BreakFree.apk"
+              data-apk-dl>
+              <span class="t-en">Download the APK — v{tag}</span>
+              <span class="t-ar" lang="ar" dir="rtl">حمّل الـ APK — v{tag}</span>
+            </a>
+            <span class="install__get-note">
+              <span class="t-en">
+                A warning will appear on install. Now you know why.
+              </span>
+              <span class="t-ar" lang="ar" dir="rtl">
+                سيظهر تحذير عند التثبيت. والآن تعرف لماذا.
+              </span>
+            </span>
+          </div>
+
           <p class="install__links mono">
             <a
               href="https://github.com/YUouriii/taafi-app"
@@ -204,11 +257,12 @@ const trust = [
               <span class="t-ar" lang="ar" dir="rtl">اقرأ المصدر ↗</span>
             </a>
             <span aria-hidden="true">·</span>
-            <a href="/BreakFree.apk" download="BreakFree.apk">
-              <span class="t-en">Download v{release.tag.replace(/^v/, "")}</span>
-              <span class="t-ar" lang="ar" dir="rtl">
-                نزّل v{release.tag.replace(/^v/, "")}
-              </span>
+            <a
+              href="https://github.com/YUouriii/taafi-app/releases"
+              target="_blank"
+              rel="noopener noreferrer">
+              <span class="t-en">All releases ↗</span>
+              <span class="t-ar" lang="ar" dir="rtl">كل الإصدارات ↗</span>
             </a>
           </p>
         </div>
@@ -220,6 +274,49 @@ const trust = [
 <style>
   .install__title {
     margin-top: 1.6rem;
+  }
+
+  .install__notice {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.3rem, 2.5vw, 1.9rem);
+    border: 1px solid var(--hairline-strong);
+    border-inline-start: 3px solid var(--dawn);
+    background: color-mix(in srgb, var(--dawn) 7%, transparent);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.5rem 1.4rem;
+    align-items: baseline;
+  }
+
+  .install__notice-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dawn);
+    white-space: nowrap;
+  }
+
+  .install__notice-body {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 68ch;
+  }
+
+  html[lang="ar"] .install__notice-body {
+    font-family: var(--font-arabic);
+    line-height: 1.9;
+  }
+
+  .install__col-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 0.9rem;
   }
 
   .install__lede {
@@ -341,6 +438,26 @@ const trust = [
     font-family: var(--font-mono);
     font-size: 0.85em;
     color: var(--ink);
+  }
+
+  .install__get {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.9rem 1.2rem;
+  }
+
+  .install__get-note {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  html[lang="ar"] .install__get-note {
+    font-style: normal;
+    font-family: var(--font-arabic);
   }
 
   .install__links {
